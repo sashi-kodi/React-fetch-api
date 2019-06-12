@@ -25,41 +25,41 @@ class UsersComponent extends Component{
         const {users,errors} = this.state;
        
         
-        if(errors.length>0){
-            return(
-              <div className="error-message">
-                   <div class="error-text">
-                    <p>{errors}</p>
-                    </div>
-                </div>
+        return(
+            <React.Fragment>
+                {errors.length>0 &&
+
+                   <div className="error-message">
+                           <div class="error-text">
+                            <p>{errors}</p>
+                            </div>
+                        </div>
+
+                }
+             {users ? 
+               <section className="users-container">
+                <table className="users-table table table-striped">
+                <thead>
+                  <tr>
+                     <th>Name</th>
+                     <th>UserName </th>
+                       <th>Email</th>
+                     <th>Phone No </th>
+                   </tr>
+                </thead>
+                <tbody>
+                    {users.map(user=>(
+
+                      <UserComponent key={user.id} user={user}/>
+                    ))}
+            </tbody>
+            </table>
+            </section> : null
             
-            )
-        }
-        else{
-             if (!users) return null;
-            return(
-            <section className="users-container">
-        <table className="users-table table table-striped">
-        <thead>
-          <tr>
-             <th>Name</th>
-             <th>UserName </th>
-               <th>Email</th>
-             <th>Phone No </th>
-           </tr>
-        </thead>
-        <tbody>
-            {users.map(user=>(
-             
-              <UserComponent key={user.id} user={user}/>
-            ))}
-        </tbody>
-        </table>
-        </section>
-            )
-        }
-        
-        
+            }
+           </React.Fragment> 
+            
+        )
        
     }
     
